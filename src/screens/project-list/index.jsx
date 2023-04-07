@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { ProjectList } from "./list"
 import { SearchPanel } from "./search-panel"
+import { cleanObject } from "utils";
+import qs from "qs";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -10,7 +12,7 @@ export const ProjectListScreen = () => {
   const [projectList, setProjectList] = useState([])
 
   useEffect(() => {
-    fetch(`${apiUrl}/projects`).then(async response => {
+    fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(param))}`).then(async response => {
       if (response.ok) setProjectList(await response.json())
     })
   }, [param])
