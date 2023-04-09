@@ -11,7 +11,7 @@ export const ProjectListScreen = () => {
   const [param, setParam] = useState({ name: "", personId: "" });
   const [projectList, setProjectList] = useState([]);
 
-  const debouncedParam = useDebounce(param, 1500);
+  const debouncedParam = useDebounce(param, 500);
 
   useEffect(() => {
     fetch(

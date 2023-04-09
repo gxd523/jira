@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
-export const isFalsy = (value) => (value === 0 ? false : !value); // 将数字类型转成布尔类型
+export const isFalsy = (value: any) => (value === 0 ? false : !value); // 将数字类型转成布尔类型
+
 /**
  * 不要修改传入的对象的属性
  */
-export const cleanObject = (obj) => {
+export const cleanObject = (obj: any) => {
   const objCopy = { ...obj };
   Object.keys(objCopy).forEach((key) => {
     const value = obj[key];
@@ -13,15 +14,15 @@ export const cleanObject = (obj) => {
   return objCopy;
 };
 
-export const useMount = (callback) => {
+export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
   }, []);
 };
 
-export const debounce = (func, delay) => {
-  let timeout;
-  return (...param) => {
+export const debounce = (func: (...param: any) => void, delay: number = 0) => {
+  let timeout: any;
+  return (...param: any) => {
     if (timeout) {
       clearTimeout(timeout);
     }
@@ -31,7 +32,7 @@ export const debounce = (func, delay) => {
   };
 };
 
-export const useDebounce = (value, delay) => {
+export const useDebounce = (value: any, delay?: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
