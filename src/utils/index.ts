@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const isFalsy: (value: unknown) => boolean = (value) => {
+export const isFalsy: <V>(value: V) => boolean = (value) => {
   return value === 0 ? false : !value; // 将数字类型转成布尔类型
 };
 
@@ -34,8 +34,8 @@ export const debounce = (func: (...param: any) => void, delay: number = 0) => {
   };
 };
 
-export const useDebounce = (value: unknown, delay?: number) => {
-  const [debouncedValue, setDebouncedValue] = useState(value);
+export const useDebounce = <V>(value: V, delay?: number): V => {
+  const [debouncedValue, setDebouncedValue] = useState<V>(value);
 
   useEffect(() => {
     const timeout = setTimeout(() => setDebouncedValue(value), delay);
